@@ -5,9 +5,8 @@
   "license": "MIT",
   "scripts": {
     "e": "electron .",
-    "build:win": "yarn build:win32 && yarn build:win64",
-    "build:win32": "electron-builder --win --ia32",
-    "build:win64": "electron-builder --win --x64"
+    "build:win": "electron-builder --win --x64 --publish never",
+    "deploay:win": "electron-builder build --win --x64 --publish always"
   },
   "dependencies": {
     "custom-electron-titlebar": "^3.2.4",
@@ -19,17 +18,27 @@
   },
   "devDependencies": {
     "electron": "^10.1.2",
-    "electron-builder": "^22.8.1"
+    "electron-builder": "^22.8.1",
+    "electron-updater": "^4.3.5"
   },
   "build": {
     "productName": "NamanBot",
     "appId": "com.esllo.namanbot",
+    "publish": {
+      "provider": "github",
+      "owner": "ESLLO",
+      "repo": "NamanBot"
+    },
     "asar": true,
     "win": {
       "target": [
         "nsis"
       ],
-      "icon": ""
+      "icon": "",
+      "publish": [
+        "github"
+      ],
+      "remoteReleases": "https://github.com/ESLLO/NamanBot"
     },
     "nsis": {
       "oneClick": true,

@@ -1,4 +1,5 @@
 const { app, protocol, BrowserWindow, screen, ipcMain } = require('electron');
+const { autoUpdater } = require('electron-updater');
 const http = require('http');
 const open = require('open');
 const { finished } = require('stream');
@@ -8,7 +9,7 @@ const path = require('path');
 
 const DEBUG = false;
 
-const DPATH = DEBUG ? "" : app.getAppPath()+"/";
+const DPATH = DEBUG ? "" : app.getAppPath() + "/";
 const closeHTML = fs.readFileSync(DPATH + 'close.html').toString();
 const overlayHTML = fs.readFileSync(DPATH + 'overlay.html').toString();
 
@@ -28,29 +29,6 @@ function createWindow() {
   });
   _window.webContents.openDevTools();
   _window.loadFile(DPATH + 'index.html');
-  // const isWindows = process.platform === 'win32';
-  // let needsFocusFix = false;
-  // let triggeringProgrammaticBlur = false;
-
-  // _window.on('blur', (event) => {
-  //   if (!triggeringProgrammaticBlur) {
-  //     needsFocusFix = true;
-  //   }
-  // })
-
-  // _window.on('focus', (event) => {
-  //   if (isWindows && needsFocusFix) {
-  //     needsFocusFix = false;
-  //     triggeringProgrammaticBlur = true;
-  //     setTimeout(function () {
-  //       _window.blur();
-  //       _window.focus();
-  //       setTimeout(function () {
-  //         triggeringProgrammaticBlur = false;
-  //       }, 100);
-  //     }, 100);
-  //   }
-  // })
   setTimeout(() => {
     _window.show();
   }, 500);
@@ -59,12 +37,21 @@ function createWindow() {
 
 app.whenReady().then(() => {
   window = createWindow();
+  autoUpdater.on('update_not_available', () => window.webContents.send('updater', 0));
+  autoUpdater.on('update_available', () => window.webContents.send('updater', 1));
+  autoUpdater.on('update_downloaded', () => window.webContents.send('updater', 2));
+  autoUpdater.on('error', (err) => window.webContents.send('updater', err));
+  autoUpdater.checkForUpdatesAndNotify();
 })
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
+  if (overServ != null) overServ.close(() => { overServ = null; });
+  setImmediate(() => overServ.emit('close'));
+  if (serv != null) serv.close();
+  if (sock != null) sock.close();
 })
 
 app.on('activate', () => {
