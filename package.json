@@ -6,7 +6,7 @@
   "scripts": {
     "e": "electron .",
     "build:win": "electron-builder --win --x64 --publish never",
-    "deploay:win": "electron-builder build --win --x64 --publish always"
+    "deploy:win": "electron-builder build --win --x64 --publish always"
   },
   "dependencies": {
     "custom-electron-titlebar": "^3.2.4",
