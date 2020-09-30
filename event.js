@@ -127,3 +127,23 @@ document.body.onload = () => {
   }
 }
 document.getElementById('login').onclick = loginProc;
+
+let up_log = document.getElementById('update_log');
+let up_btn = document.getElementById('update_button');
+
+ipcRenderer.on('updater', (e, args) => {
+  if (args[0] == 0) {
+    up_log.textContent = "업데이트가 없습니다. " + remote.app.getVersion();
+  } else if (args[0] == 1) {
+    up_log.textContent = "업데이트가 있습니다."
+  } else if (args[0] == 2) {
+    up_log.textContent = "업데이트가 준비되었습니다."
+    up_btn.disabled = false;
+  } else if (args[0] == 3) {
+    args[1] = Math.round(args[1] * 100) / 100;
+    up_log.textContent = `다운로드중 ${args[1]}%... `;
+  } else if(args[0] == 4){
+    up_log.textContent = "업데이트 확인에 오류가 발생했습니다.";
+  }
+});
+up_btn.onclick = () => ipcRenderer.send('quitAndInstall');

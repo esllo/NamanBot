@@ -27,7 +27,7 @@ function createWindow() {
       // devTools: false
     }
   });
-  _window.webContents.openDevTools();
+  // _window.webContents.openDevTools();
   _window.loadFile(DPATH + 'index.html');
   setTimeout(() => {
     _window.show();
@@ -37,19 +37,23 @@ function createWindow() {
 
 app.whenReady().then(() => {
   window = createWindow();
-  autoUpdater.on('update_not_available', () => window.webContents.send('updater', 0));
-  autoUpdater.on('update_available', () => window.webContents.send('updater', 1));
-  autoUpdater.on('update_downloaded', () => window.webContents.send('updater', 2));
-  autoUpdater.on('error', (err) => window.webContents.send('updater', err));
+  autoUpdater.on('update_not_available', () => window.webContents.send('updater', [0]));
+  autoUpdater.on('update_available', () => window.webContents.send('updater', [1]));
+  autoUpdater.on('update_downloaded', () => window.webContents.send('updater', [2]));
+  autoUpdater.on('download-progress', (progress) => window.webContents.send('updater', [3, progress.percent]));
+  autoUpdater.on('error', (err) => window.webContents.send('updater', [4, err]));
   autoUpdater.checkForUpdatesAndNotify();
-})
+});
+
+ipcMain.on('quitAndInstall', () => {
+  autoUpdater.quitAndInstall();
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
   if (overServ != null) overServ.close(() => { overServ = null; });
-  setImmediate(() => overServ.emit('close'));
   if (serv != null) serv.close();
   if (sock != null) sock.close();
 })
