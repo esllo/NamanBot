@@ -89,8 +89,8 @@ const loginProc = () => {
           accepted = true;
           client.say(ch, `사용자봇 '${client.globaluserstate['display-name']}'(이)가 연결되었습니다. `);
         } else {
-          initKey = Math.random().toString(36).substr(2, 11);
-          client.say(ch, `사용자봇 '${client.globaluserstate['display-name']}'(이)가 연결 요청 중 입니다. 본인이 연결한 경우 '!사용자봇허용 ${initKey}' 를 입력해주세요.`);
+          // initKey = Math.random().toString(36).substr(2, 11);
+          // client.say(ch, `사용자봇 '${client.globaluserstate['display-name']}'(이)가 연결 요청 중 입니다. 본인이 연결한 경우 '!사용자봇허용 ${initKey}' 를 입력해주세요.`);
         }
       }).catch(e => { console.log(e) });
       resetTable();
