@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Frame-Options" content="default-src '*'; script-src '*'">
+  <title>Twitch 연동</title>
+</head>
+
+<body>
+  <script>
+    const { ipcRenderer } = require('electron');
+    const customTitlebar = require('custom-electron-titlebar');
+
+    new customTitlebar.Titlebar({
+      backgroundColor: customTitlebar.Color.fromHex('#444'),
+      menu: null,
+      titleHorizontalAlignment: 'left',
+    });
+  </script>
+  <iframe src="https://twitch.tv/login" onLoad="urlChanged(this)">
+  </iframe>
+</body>
+
+</html>

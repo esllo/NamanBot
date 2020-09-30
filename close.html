@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Twitch Link</title>
+  <style>
+    body {
+      background: #efeef1;
+    }
+
+    p {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      width: 300px;
+      cursor: pointer;
+      text-align: center;
+      background: #9147ff;
+      border-radius: 4px;
+      color: #fff;
+      margin: 35vh auto;
+      height: 40px;
+      line-height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>현재 창을 닫아주세요.</p>
+  <script>
+    if (window.location.href.indexOf('#') != -1) {
+      window.location.href = window.location.href.split('#')[1];
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<div style="display: flex; flex-direction: column; height: 100%;">
+  <ul class="uk-child-width-expand" uk-tab="connect: .uk-switcher; animation:uk-animation-fade"
+    style="margin:0 0 0 -20px; box-shadow: 0px 1px 4px;">
+    <li class="uk-active"><a href="#" class="tab-border">명령어</a></li>
+    <li><a href="#" class="tab-border">키워드</a></li>
+    <li><a href="#" class="tab-border">변수</a></li>
+    <li><a href="#" class="tab-border">대시보드</a></li>
+    <li><a href="#" class="tab-border">설정</a></li>
+  </ul>
+  <div class="uk-switcher" style="flex: 1;">
+    <!-- 명령어 -->
+    <div class="uk-active uk-overflow-auto">
+      <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+        <thead>
+          <tr>
+            <th class="uk-table-shrink"></th>
+            <th class="uk-width-small">명령</th>
+            <th class="uk-table-expand">문구</th>
+            <th style="width:46px;"></th>
+          </tr>
+        </thead>
+        <tbody id="tbb1">
+
+
+        </tbody>
+      </table>
+    </div>
+    <!-- 명령어 -->
+    <!-- 키워드 -->
+    <div>
+      <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+        <thead>
+          <tr>
+            <th class="uk-table-shrink"></th>
+            <th class="uk-width-small">키워드</th>
+            <th class="uk-table-expand">문구</th>
+            <th style="width:46px;"></th>
+          </tr>
+        </thead>
+        <tbody id="tbb2">
+        </tbody>
+      </table>
+    </div>
+    <!-- 키워드 -->
+    <!-- 변수 -->
+    <div>
+      <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+        <thead>
+          <tr>
+            <th class="uk-table-shrink"></th>
+            <th class="uk-width-small">변수</th>
+            <th class="uk-table-expand">값</th>
+            <th style="width:46px;"></th>
+          </tr>
+        </thead>
+        <tbody id="tbb3">
+
+        </tbody>
+      </table>
+    </div>
+    <!-- 변수 -->
+    <div style="height:100%;">
+      <div style="display:flex; flex-direction: column; height: 100%;">
+        <div style="flex: 1;">
+        </div>
+        <div class="uk-button-group" style="padding: 6px; display:flex;">
+          <button id="hostOpen" class="hostButton uk-button uk-button-primary" style="margin-right: 3px; flex: 1;">호스트
+            실행</button>
+          <button id="hostClose" class="hostButton uk-button uk-button-danger" style="margin-left: 3px; flex: 1;">호스트
+            종료</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+        <thead>
+          <tr>
+            <th class="uk-width-small">설정</th>
+            <th class="uk-table-expand">값</th>
+            <th class="uk-table-small"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>채널</td>
+            <td class="uk-text-truncate">
+              <div class="uk-inline uk-width-expand edit-input">
+                <input id="ch_input" class="uk-input" type="text">
+              </div>
+            </td>
+            <td><button id="ch_button" class="uk-button uk-button-primary uk-width-expand" disabled>저장</button></td>
+          </tr>
+          <tr>
+            <td>존재하지 않는<br />명령어 대체어</td>
+            <td class="uk-text-truncate">
+              <div class="uk-inline uk-width-expand edit-input">
+                <input id="noex_input" class="uk-input" type="text">
+              </div>
+            </td>
+            <td><button id="noex_button" class="uk-button uk-button-primary uk-width-expand" disabled>저장</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

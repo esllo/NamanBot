@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overlay</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    #main {
+      transition: all 1s;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
+    integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA=="
+    crossorigin="anonymous"></script>
+  <script>
+    const PORT = $PORT;
+    const socket = io.connect('http://localhost:' + PORT);
+    const main = document.getElementById('main');
+    socket.on('optChange', (args) => {
+      if (args.duration !== undefined) main.style.transition = `all ${args.duration}s`;
+      if (args.style !== undefined) {
+        let styles = args.style;
+        Object.keys(styles).forEach(key => main.style[key] = `${styles[key]}`);
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NamanBot</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+  <style>
+    .uk-height-viewport {
+      min-height: calc(100vh - 30px) !important;
+    }
+
+    * {
+      overflow-x: hidden !important;
+    }
+
+    .panel {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      transition: transform .5s;
+    }
+
+    .panel:not(:first-child) {
+      transform: translateX(100%);
+    }
+
+    .edit-input {
+      margin: -16px 0 !important;
+    }
+
+    .tab-border {
+      padding: 12px !important;
+      border-width: 3px !important;
+    }
+
+    .uk-active>.tab-border {
+      border-color: #343638 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    <!-- ====================LOGIN==================== -->
+    <div id="login_panel"
+      class="panel login uk-cover-container uk-background-secondary uk-flex uk-flex-center uk-flex-middle uk-height-viewport uk-overflow-hidden uk-light">
+    </div>
+    <!-- ====================LOGIN==================== -->
+    <!-- ====================MANAGE=================== -->
+    <div id="manage_panel" class="panel" style="height: 100%;">
+    </div>
+    <!-- ====================MANAGE=================== -->
+  </div>
+  <div id="scripts">
+    <script>
+      const { ipcRenderer, remote } = require('electron');
+      const DEBUG = false;
+      
+      const DPATH = DEBUG ? "" : remote.app.getAppPath()+"/";
+      const fs = require('fs');
+      document.getElementById('login_panel').innerHTML = fs.readFileSync(DPATH+'login.html');
+      document.getElementById('manage_panel').innerHTML = fs.readFileSync(DPATH+'manage.html');
+    </script>
+    <script src="titlebar.js"></script>
+    <script>
+      const Store = require('./store.js');
+      const crd = new Store({ configName: 'crds' });
+      const tmi = require('tmi.js');
+    </script>
+    <script src="cmd.js"></script>
+    <script src="event.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+  </div>
+</body>
+
+</html>

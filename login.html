@@ -1,0 +1,35 @@
+<div class="uk-width-medium uk-padding-small uk-position-z-index">
+
+  <div class="uk-text-center uk-margin">
+    <!-- <img src="img/login-logo.svg" alt="Logo"> -->
+  </div>
+
+  <div class="toggle-class">
+    <fieldset class="uk-fieldset">
+      <div class="uk-margin-small">
+        <div class="uk-inline uk-width-1-1">
+          <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+          <input id="id" class="uk-input uk-border-pill" required placeholder="아이디" type="text">
+        </div>
+      </div>
+      <div class="uk-margin-small">
+        <div class="uk-inline uk-width-1-1">
+          <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+          <input id="pw" class="uk-input uk-border-pill" required placeholder="비밀번호" type="password">
+        </div>
+        <p style="font-size:12px;margin:4px 12px;">OAuth 비밀번호만 사용가능합니다.</p>
+      </div>
+      <div class="uk-margin-small">
+        <label><input id="auto" class="uk-checkbox" type="checkbox"> 자동 로그인</label>
+      </div>
+      <div class="uk-margin-bottom">
+        <button id="login" class="uk-button uk-button-primary uk-border-pill uk-width-1-1">로그인</button>
+      </div>
+    </fieldset>
+  </div>
+  <div>
+    <div class="uk-text-center">
+      <a id="twitchLink" class="uk-link-reset uk-text-small toggle-class">OAuth 비밀번호 생성</a>
+    </div>
+  </div>
+</div>
