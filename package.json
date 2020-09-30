@@ -24,11 +24,6 @@
   "build": {
     "productName": "NamanBot",
     "appId": "com.esllo.namanbot",
-    "publish": {
-      "provider": "github",
-      "owner": "ESLLO",
-      "repo": "NamanBot"
-    },
     "asar": true,
     "win": {
       "target": [

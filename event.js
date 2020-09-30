@@ -143,7 +143,7 @@ ipcRenderer.on('updater', (e, args) => {
     args[1] = Math.round(args[1] * 100) / 100;
     up_log.textContent = `다운로드중 ${args[1]}%... `;
   } else if(args[0] == 4){
-    up_log.textContent = "업데이트 확인에 오류가 발생했습니다.";
+    up_log.textContent = "업데이트 확인에 오류가 발생했습니다. ";
   }
 });
 up_btn.onclick = () => ipcRenderer.send('quitAndInstall');
