@@ -58,20 +58,26 @@
     <script>
       const { ipcRenderer, remote } = require('electron');
       const DEBUG = false;
-      
-      const DPATH = DEBUG ? "" : remote.app.getAppPath()+"/";
+
+      const DPATH = DEBUG ? "" : remote.app.getAppPath() + "/";
       const fs = require('fs');
-      document.getElementById('login_panel').innerHTML = fs.readFileSync(DPATH+'login.html');
-      document.getElementById('manage_panel').innerHTML = fs.readFileSync(DPATH+'manage.html');
+      document.getElementById('login_panel').innerHTML = fs.readFileSync(DPATH + 'res/html/login.html');
+      document.getElementById('manage_panel').innerHTML = fs.readFileSync(DPATH + 'res/html/manage.html');
+
+      const customTitlebar = require('custom-electron-titlebar');
+      new customTitlebar.Titlebar({
+        backgroundColor: customTitlebar.Color.fromHex('#444'),
+        menu: null,
+        titleHorizontalAlignment: 'left',
+      });
     </script>
-    <script src="titlebar.js"></script>
     <script>
-      const Store = require('./store.js');
+      const Store = require('../js/store.js');
       const crd = new Store({ configName: 'crds' });
       const tmi = require('tmi.js');
     </script>
-    <script src="cmd.js"></script>
-    <script src="event.js"></script>
+    <script src="../js/cmd.js"></script>
+    <script src="../js/event.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
   </div>

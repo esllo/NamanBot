@@ -3,5 +3,4 @@ dist/
 .git/
 package-lock.json
 yarn-error.log
-test.js
 yarn.lock

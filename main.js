@@ -10,8 +10,8 @@ const path = require('path');
 const DEBUG = false;
 
 const DPATH = DEBUG ? "" : app.getAppPath() + "/";
-const closeHTML = fs.readFileSync(DPATH + 'close.html').toString();
-const overlayHTML = fs.readFileSync(DPATH + 'overlay.html').toString();
+const closeHTML = fs.readFileSync(DPATH + 'res/html/close.html').toString();
+const overlayHTML = fs.readFileSync(DPATH + 'res/html/overlay.html').toString();
 
 var window = null;
 function createWindow() {
@@ -28,7 +28,7 @@ function createWindow() {
     }
   });
   // _window.webContents.openDevTools();
-  _window.loadFile(DPATH + 'index.html');
+  _window.loadFile(DPATH + 'res/html/index.html');
   setTimeout(() => {
     _window.show();
   }, 500);
