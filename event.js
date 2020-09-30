@@ -144,6 +144,7 @@ ipcRenderer.on('updater', (e, args) => {
     up_log.textContent = `다운로드중 ${args[1]}%... `;
   } else if(args[0] == 4){
     up_log.textContent = "업데이트 확인에 오류가 발생했습니다. ";
+    console.log(args[1]);
   }
 });
 up_btn.onclick = () => ipcRenderer.send('quitAndInstall');
