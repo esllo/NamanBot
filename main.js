@@ -42,7 +42,10 @@ app.whenReady().then(() => {
   autoUpdater.on('update_downloaded', () => window.webContents.send('updater', [2]));
   autoUpdater.on('download-progress', (progress) => window.webContents.send('updater', [3, progress.percent]));
   autoUpdater.on('error', (err) => window.webContents.send('updater', [4, err]));
-  autoUpdater.checkForUpdatesAndNotify();
+});
+
+ipcMain.on('checkUpdate', () => {
+  autoUpdater.checkForUpdates();
 });
 
 ipcMain.on('quitAndInstall', () => {

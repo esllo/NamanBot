@@ -231,8 +231,8 @@ function changeTable(key) {
   document.getElementById(key).innerHTML = struct;
 }
 
-function removeKey(key){
-  if(cmd().get(key) != undefined){
+function removeKey(key) {
+  if (cmd().get(key) != undefined) {
     cmd().del(key);
     resetTable();
   }
