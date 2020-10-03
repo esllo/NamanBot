@@ -165,7 +165,7 @@ function onMessage(context, msg) {
     if (keyword != undefined && (repl = cmd().get(keyword)) != undefined) {
       // msg = msg.replace(key, repl);
       varMap[ch].keys.forEach((arg, i) => repl = repl.replace(`\$\{${arg.substr(2)}\}`, (cmd().get(arg) == undefined ? noex : cmd().get(arg).value)));
-      repl.match(/\$\{[^\$\{\}]{1,9}\}/g).forEach(match => repl = repl.replace(match, noex));
+      [...repl.matchAll(/\$\{[^\$\{\}]{1,9}\}/g)].forEach(match => repl = repl.replace(match[0], noex));
       client.say(ch, repl);
     }
 

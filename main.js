@@ -81,7 +81,7 @@ ipcMain.on('twitchLink', (event, args) => {
     })
     serv.listen(80);
   }
-  open('https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=1e0ucayvkh2vwrmui0kx2iryrjnfig&redirect_uri=http://localhost&scope=chat:read+chat:edit+channel:moderate+whispers:read+whispers:edit+channel_editor');
+  open('https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=1e0ucayvkh2vwrmui0kx2iryrjnfig&redirect_uri=http://localhost&scope=chat:read+chat:edit+channel:moderate+whispers:read+whispers:edit+channel_editor&login=true');
   function finished(token) {
     serv.close();
     serv = null;
@@ -92,31 +92,31 @@ ipcMain.on('twitchLink', (event, args) => {
   serv_out = setTimeout(() => { if (serv != null) finished('failed') }, 10000);
 })
 
-var sock = null;
-var overServ = null;
-ipcMain.on('hostOpen', () => {
-  if (overServ != null) return;
-  overServ = http.createServer((req, res) => {
-    res.end(overlayHTML.replace('$PORT', 15127));
-  });
-  overServ.listen(15126);
-});
-ipcMain.on('hostClose', () => {
-  if (overServ != null) overServ.close(() => { overServ = null; });
-  setImmediate(() => overServ.emit('close'));
-  console.log('close server');
-});
-ipcMain.on('optChange', (event, args) => {
-  sock.sockets.emit('optChange', args);
-});
-sock = io.listen(15127);
-function listenSock() {
-  sock.on('connection', (client) => {
-    console.log('client connected');
-    client.emit('bgcolor', { a: 'b' });
-    client.on('disconnected', () => {
-      console.log('client disconnected');
-    })
-  });
-}
-listenSock();
+// var sock = null;
+// var overServ = null;
+// ipcMain.on('hostOpen', () => {
+//   if (overServ != null) return;
+//   overServ = http.createServer((req, res) => {
+//     res.end(overlayHTML.replace('$PORT', 15127));
+//   });
+//   overServ.listen(15126);
+// });
+// ipcMain.on('hostClose', () => {
+//   if (overServ != null) overServ.close(() => { overServ = null; });
+//   setImmediate(() => overServ.emit('close'));
+//   console.log('close server');
+// });
+// ipcMain.on('optChange', (event, args) => {
+//   sock.sockets.emit('optChange', args);
+// });
+// sock = io.listen(15127);
+// function listenSock() {
+//   sock.on('connection', (client) => {
+//     console.log('client connected');
+//     client.emit('bgcolor', { a: 'b' });
+//     client.on('disconnected', () => {
+//       console.log('client disconnected');
+//     })
+//   });
+// }
+// listenSock();
